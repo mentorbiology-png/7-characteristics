@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6-р анги — Амьд биеийн үндсэн шинж чанар</title>
+<style>
+:root{
+  --green:#16794c; --green2:#35a66f; --mint:#eaf8f0; --dark:#17352a;
+  --gold:#f0a629; --red:#d9534f; --blue:#3478c9; --bg:#f4f8f6;
+  --card:#fff; --muted:#61736c; --shadow:0 8px 28px rgba(23,53,42,.09);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Noto Sans",Arial,sans-serif;background:var(--bg);color:var(--dark);line-height:1.65}
+header{background:linear-gradient(135deg,#0e5c39,#35a66f);color:#fff;padding:42px 20px;text-align:center}
+header h1{margin:0 0 8px;font-size:clamp(28px,5vw,46px)}
+header p{margin:5px 0;opacity:.94}
+.wrap{max-width:1050px;margin:auto;padding:22px 16px 60px}
+.card{background:var(--card);border-radius:18px;padding:24px;margin:18px 0;box-shadow:var(--shadow);border:1px solid #e4eee8}
+h2{color:var(--green);margin-top:0}
+h3{color:#205f45}
+.hero-question{font-size:clamp(21px,3vw,30px);font-weight:800;text-align:center;padding:20px;background:var(--mint);border-radius:14px}
+.mrs{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:18px}
+.mrs button,.term-btn{border:0;border-radius:14px;padding:15px;background:#f1faf5;cursor:pointer;font-weight:800;color:var(--green);transition:.2s}
+.mrs button:hover,.term-btn:hover{transform:translateY(-2px);background:#dcf3e7}
+.term{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#f7fbf8;border-left:5px solid var(--green2);padding:15px;border-radius:10px;margin:12px 0}
+.listen{background:var(--blue);color:#fff;border:0;border-radius:999px;padding:9px 13px;cursor:pointer;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.activity{background:#fffaf0;border-left:5px solid var(--gold);padding:18px;border-radius:12px;margin-top:16px}
+.choice{display:block;width:100%;text-align:left;border:1px solid #dbe7e1;background:#fff;padding:12px;margin:8px 0;border-radius:10px;cursor:pointer}
+.choice:hover{background:#f3faf6}
+.correct{background:#dff5e7!important;border-color:#43a76f!important}
+.wrong{background:#fde5e3!important;border-color:#d9534f!important}
+.feedback{font-weight:700;margin-top:10px;min-height:28px}
+.scorebar{position:sticky;top:0;z-index:20;background:#17352a;color:#fff;padding:10px 16px;box-shadow:0 3px 12px #0002}
+.scoreinner{max-width:1050px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.progress{height:8px;background:#ffffff33;border-radius:99px;overflow:hidden;flex:1}
+.progress span{display:block;height:100%;width:0;background:#9ee4bc;transition:.3s}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{padding:10px;border-bottom:1px solid #e4eee8;text-align:left}
+th{background:#edf8f1}
+.big-result{text-align:center;font-size:25px;font-weight:800;padding:24px;background:var(--mint);border-radius:16px}
+.small{color:var(--muted);font-size:.94rem}
+.flow{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:15px 0}
+.flow span{background:#edf8f1;padding:10px 14px;border-radius:12px;font-weight:700}
+.arrow{font-size:22px;color:var(--green)}
+.reset{background:#17352a;color:#fff;border:0;border-radius:10px;padding:12px 18px;cursor:pointer}
+footer{text-align:center;color:var(--muted);padding:25px}
+@media(max-width:600px){.card{padding:18px}.term{align-items:flex-start;flex-direction:column}.scoreinner{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Амьд биеийн үндсэн шинж чанар</h1>
+  <h2 style="color:#fff;margin:0 0 8px">Characteristics of Living Organisms</h2>
+  <p>6-р ангийн интерактив биологийн хичээл</p>
+  <p>🔎 Ажигла • 🧠 Бод • 🔬 Нотол • 🏆 Оноогоо цуглуул</p>
+</header>
+
+<div class="scorebar">
+  <div class="scoreinner">
+    <strong>🏆 Оноо: <span id="score">0</span> / 93</strong>
+    <div class="progress"><span id="progress"></span></div>
+    <span id="percent">0%</span>
+  </div>
+</div>
+
+<main class="wrap">
+<section class="card">
+  <h2>🕵️ МӨРДӨГЧИЙН СОРИЛ — АМЬД БИЕИЙГ ЯЛГАЖ ТАНИХ УУ?</h2>
+  <p><strong>Нууцлаг 5 объект</strong>-ийг ажиглаад эхний таамгаа гаргаарай. Одоо зөв хариуг мэдэхээс илүүтэй <strong>яагаад</strong> ингэж ангилснаа бодох нь чухал.</p>
+  <p>🔎 <strong>Даалгавар:</strong> Объект бүрийг <strong>Амьд / Living</strong>, <strong>Амьд биш / Non-living</strong>, эсвэл <strong>Өмнө нь амьд байсан / Dead</strong> гэж ангил.</p>
+</section>
+<section class="card">
+<h2>🕵️ МӨРДӨГЧИЙН СОРИЛ — АМЬД БИЕИЙГ ЯЛГАЖ ТАНИХ УУ?</h2>
+<p>Дараах 3 ойлголтыг зөв ялгаарай. Англи нэр томьёог 🔊 товчлуураар сонсоно уу.</p>
+
+<div class="grid">
+  <div class="activity">
+    <strong>🟢 Амьд — Living</strong>
+    <button class="listen" onclick="speak('Living')">🔊 Сонсох</button>
+    <p class="small">Одоо амьд байгаа, амьд биеийн шинжүүдийг үзүүлж буй бие.</p>
+  </div>
+
+  <div class="activity">
+    <strong>⚪ Амьд биш — Non-living</strong>
+    <button class="listen" onclick="speak('Non-living')">🔊 Сонсох</button>
+    <p class="small">Хэзээ ч амьд байгаагүй, амьд биеийн шинжгүй зүйл.</p>
+  </div>
+
+  <div class="activity">
+    <strong>🟤 Өмнө нь амьд байсан — Dead</strong>
+    <button class="listen" onclick="speak('Dead')">🔊 Сонсох</button>
+    <p class="small">Өмнө нь амьд байсан боловч одоо амьдралын үйл ажиллагаагаа зогсоосон бие.</p>
+  </div>
+</div>
+
+<div class="activity">
+  <strong>🎯 Эхлэх сорил — Зөв ангил</strong>
+  <p>🐕 Нохой</p>
+  <button class="choice" onclick="answer(this,true)">Амьд / Living</button>
+  <button class="choice" onclick="answer(this,false)">Амьд биш / Non-living</button>
+  <button class="choice" onclick="answer(this,false)">Өмнө нь амьд байсан / Dead</button>
+
+  <p>🪨 Чулуу</p>
+  <button class="choice" onclick="answer(this,false)">Амьд / Living</button>
+  <button class="choice" onclick="answer(this,true)">Амьд биш / Non-living</button>
+  <button class="choice" onclick="answer(this,false)">Өмнө нь амьд байсан / Dead</button>
+
+  <p>🍂 Хатсан навч</p>
+  <button class="choice" onclick="answer(this,false)">Амьд / Living</button>
+  <button class="choice" onclick="answer(this,false)">Амьд биш / Non-living</button>
+  <button class="choice" onclick="answer(this,true)">Өмнө нь амьд байсан / Dead</button>
+
+  <p>🪵 Үхсэн мөчир</p>
+  <button class="choice" onclick="answer(this,false)">Амьд / Living</button>
+  <button class="choice" onclick="answer(this,false)">Амьд биш / Non-living</button>
+  <button class="choice" onclick="answer(this,true)">Өмнө нь амьд байсан / Dead</button>
+
+  <p>🌱 Амьд ургамал</p>
+  <button class="choice" onclick="answer(this,true)">Амьд / Living</button>
+  <button class="choice" onclick="answer(this,false)">Амьд биш / Non-living</button>
+  <button class="choice" onclick="answer(this,false)">Өмнө нь амьд байсан / Dead</button>
+</div>
+</section>
+<section class="card">
+  <h2>💡 ТААМАГЛАСНАА НОТОЛЪЁ</h2>
+  <p>Чиний эхний ангилал зөв эсэхийг дараагийн хэсэгт <strong>MRS GREN</strong>-ийн 7 шинжээр шалгана.</p>
+  <div class="flow">
+    <span>Ажигла</span><b class="arrow">→</b>
+    <span>Таамагла</span><b class="arrow">→</b>
+    <span>MRS GREN-ээр шалга</span><b class="arrow">→</b>
+    <span>Дүгнэ</span>
+  </div>
+</section>
+
+
+<section class="card">
+  <div class="hero-question">🕵️ АМЬДЫГ ТАНЬЖ ЧАДАХ УУ?</div>
+  <p><strong>Асуудал:</strong> Нохой унтаж байхад амьд гэдгийг нь яаж мэдэх вэ? Чулуу яагаад амьд биш вэ? Хатсан навч өмнө нь амьд байсан уу?</p>
+  <p>Эхлээд таамагла. Дараа нь <strong>MRS GREN</strong>-ээр өөрийн хариултаа нотлоно.</p>
+</section>
+
+<section class="card">
+  <h2>🧬 MRS GREN — АМЬД БИЕИЙГ ТАНИХ 7 ТҮЛХҮҮР</h2>
+  <p>Амьд биеийг танихад дараах 7 шинжийг ашиглана.</p>
+  <div class="mrs">
+    <button onclick="speak('Movement')">M — Movement<br><span class="small">Хөдөлгөөн</span></button>
+    <button onclick="speak('Respiration')">R — Respiration<br><span class="small">Эсийн амьсгал</span></button>
+    <button onclick="speak('Sensitivity')">S — Sensitivity<br><span class="small">Мэдэрхүй</span></button>
+    <button onclick="speak('Growth')">G — Growth<br><span class="small">Өсөлт</span></button>
+    <button onclick="speak('Reproduction')">R — Reproduction<br><span class="small">Үржил</span></button>
+    <button onclick="speak('Excretion')">E — Excretion<br><span class="small">Ялгаруулалт</span></button>
+    <button onclick="speak('Nutrition')">N — Nutrition<br><span class="small">Хооллолт</span></button>
+  </div>
+  <div class="activity">
+    <strong>🎯 Дасгал 1 — 7 түлхүүрийг зөв холбо</strong>
+    <p>M → ?</p>
+    <button class="choice" data-points="1" onclick="answer(this,true)">Movement</button>
+    <button class="choice" onclick="answer(this,false)">Nutrition</button>
+    <p>R → ?</p>
+    <button class="choice" data-points="1" onclick="answer(this,true)">Respiration</button>
+    <button class="choice" onclick="answer(this,false)">Growth</button>
+    <p>S → ?</p>
+    <button class="choice" data-points="1" onclick="answer(this,true)">Sensitivity</button>
+    <button class="choice" onclick="answer(this,false)">Excretion</button>
+    <p>G → ?</p>
+    <button class="choice" data-points="1" onclick="answer(this,true)">Growth</button>
+    <button class="choice" onclick="answer(this,false)">Movement</button>
+    <p>R → ?</p>
+    <button class="choice" data-points="1" onclick="answer(this,true)">Reproduction</button>
+    <button class="choice" onclick="answer(this,false)">Respiration</button>
+    <p>E → ?</p>
+    <button class="choice" data-points="1" onclick="answer(this,true)">Excretion</button>
+    <button class="choice" onclick="answer(this,false)">Growth</button>
+    <p>N → ?</p>
+    <button class="choice" data-points="1" onclick="answer(this,true)">Nutrition</button>
+    <button class="choice" onclick="answer(this,false)">Sensitivity</button>
+  </div>
+</section>
+
+<section class="card">
+<h2>🟢 1. M — Movement / Хөдөлгөөн</h2>
+<div class="term"><div><strong>Movement</strong><br>Амьд бие болон түүний хэсэг байрлал, чиглэлээ өөрчилж чадна.</div><button class="listen" onclick="speak('Movement')">🔊 Сонсох</button></div>
+<div class="grid">
+  <div>🐕 Нохой — гүйж хөдөлнө.</div><div>🐟 Загас — сэлнэ.</div><div>🦅 Шувуу — ниснэ.</div><div>🌱 Ургамал — гэрлийн зүг ургана.</div>
+</div>
+<div class="activity"><strong>🎯 Дасгал 2 — Аль нь амьд биеийн хөдөлгөөн вэ?</strong>
+<button class="choice" onclick="answer(this,true)">🐕 Нохой гүйх</button>
+<button class="choice" onclick="answer(this,true)">🌱 Ургамал гэрлийн зүг ургах</button>
+<button class="choice" onclick="answer(this,true)">🐟 Загас сэлэх</button>
+<button class="choice" onclick="answer(this,false)">🪨 Чулуу өнхрөх</button>
+<div class="feedback"></div>
+</div>
+<div class="activity"><strong>🧠 Дунд түвшин — 2 оноо</strong>
+<p>Ургамал газар дээрээсээ хөдөлдөггүй. Гэсэн ч яагаад хөдөлгөөнтэй амьд бие гэж үздэг вэ?</p>
+<button class="choice" onclick="answer(this,true,2)">Ургамлын хэсгүүд, жишээ нь иш, гэрлийн зүг өсөж чиглэлээ өөрчилдөг.</button>
+<button class="choice" onclick="answer(this,false)">Ургамал алхаж чаддаггүй учраас хөдөлгөөнгүй.</button>
+</div>
+<div class="activity"><strong>🔬 Дээд түвшин — 2 оноо</strong>
+<p>Ургамлын хөдөлгөөн гепардын хөдөлгөөнөөс юугаараа ялгаатай вэ?</p>
+<button class="choice" onclick="answer(this,true,2)">Гепард бүх биеэрээ хурдан хөдөлдөг бол ургамал ихэвчлэн өсөлтөөрөө аажмаар чиглэлээ өөрчилдөг.</button>
+<button class="choice" onclick="answer(this,false)">Ургамал огт хөдөлдөггүй.</button>
+</div>
+</section>
+
+<section class="card">
+<h2>🔵 2. R — Respiration / Эсийн амьсгал</h2>
+<div class="term"><div><strong>Respiration</strong><br>Эсэд шим бодисын задралаар энерги чөлөөлөгдөх үйл явц.</div><button class="listen" onclick="speak('Respiration')">🔊 Сонсох</button></div>
+<p>⚠️ <strong>Breathing</strong> буюу агаар авах, гаргах ба <strong>respiration</strong> буюу эсийн амьсгал нь ижил ойлголт биш.</p>
+<div class="flow"><span>Шим бодис</span><b class="arrow">→</b><span>Эс</span><b class="arrow">→</b><span>Энерги</span></div>
+<div class="activity"><strong>🎯 Дасгал 3 — Ургамал эсийн амьсгал хийдэг үү?</strong>
+<button class="choice" onclick="answer(this,true)">Тийм. Ургамлын эсүүд энерги чөлөөлөхийн тулд эсийн амьсгал явуулна.</button>
+<button class="choice" onclick="answer(this,false)">Үгүй. Ургамал зөвхөн фотосинтез хийдэг.</button></div>
+<div class="activity"><strong>🧠 Дунд түвшин — 2 оноо</strong>
+<p>“Ургамал зөвхөн фотосинтез хийдэг, эсийн амьсгал хийдэггүй” гэсэн санааг үнэл.</p>
+<button class="choice" onclick="answer(this,true,2)">Буруу. Ургамал фотосинтез хийдэг боловч эсүүд нь мөн эсийн амьсгалаар энерги чөлөөлнө.</button>
+<button class="choice" onclick="answer(this,false)">Зөв. Ургамалд эсийн амьсгал хэрэггүй.</button></div>
+<div class="activity"><strong>🔬 Дээд түвшин — 2 оноо</strong>
+<p>Ургамлын эсийн амьсгалыг нотлох энгийн туршилтын санаа аль нь хамгийн тохиромжтой вэ?</p>
+<button class="choice" onclick="answer(this,true,2)">Амьд ургамал амьсгалын явцад нүүрсхүчлийн хий ялгаруулдгийг илрүүлэхийг зорих.</button>
+<button class="choice" onclick="answer(this,false)">Ургамлыг гэрэлд тавиад зөвхөн өнгийг нь ажиглах.</button></div>
+</section>
+
+<section class="card">
+<h2>🟣 3. S — Sensitivity / Мэдэрхүй</h2>
+<div class="term"><div><strong>Sensitivity</strong><br>Орчны өөрчлөлтийг мэдэрч, тохирох хариу үйлдэл үзүүлэх чадвар.</div><button class="listen" onclick="speak('Sensitivity')">🔊 Сонсох</button></div>
+<div class="grid"><div>🔥 Халуун зүйл → гараа татна.</div><div>☀️ Гэрэл → ургамал гэрэл рүү ургана.</div><div>👁️ Гэрэл ихсэх → хүүхэн хараа нарийсна.</div></div>
+<div class="activity"><strong>🎯 Дасгал 4 — Цочрол ба хариу үйлдлийг холбо</strong>
+<button class="choice" onclick="answer(this,true)">☀️ Гэрэл → ургамал гэрэл рүү ургах</button>
+<button class="choice" onclick="answer(this,true)">🔥 Халуун → гараа татах</button>
+<button class="choice" onclick="answer(this,false)">🪨 Чулуу → үр төл гаргах</button></div>
+<div class="activity"><strong>🧠 Дунд түвшин — 2 оноо</strong>
+<p>Цонхны дэргэдэх ургамал гэрлийн зүг хазайжээ. Ямар цочролд хариу үзүүлж байна вэ?</p>
+<button class="choice" onclick="answer(this,true,2)">Гэрлийн цочролд.</button><button class="choice" onclick="answer(this,false)">Дууны цочролд.</button></div>
+<div class="activity"><strong>🔬 Дээд түвшин — 2 оноо</strong>
+<p>Ургамал амьтан шиг хурдан хөдөлдөггүй боловч яагаад цочролд хариу үзүүлдэг вэ?</p>
+<button class="choice" onclick="answer(this,true,2)">Орчны өөрчлөлтийг мэдэрч, өсөлтийн чиглэлээ өөрчилж чаддаг.</button><button class="choice" onclick="answer(this,false)">Учир нь ургамал амьтан болдог.</button></div>
+</section>
+
+<section class="card">
+<h2>🟠 4. G — Growth / Өсөлт</h2>
+<div class="term"><div><strong>Growth</strong><br>Биеийн хэмжээ, эсийн тоо эсвэл эсийн хэмжээ нэмэгдэж, хуурай масс эргэж буцалтгүй нэмэгдэх үйл явц.</div><button class="listen" onclick="speak('Growth')">🔊 Сонсох</button></div>
+<div class="flow"><span>Үр</span><b class="arrow">→</b><span>Соёо</span><b class="arrow">→</b><span>Залуу ургамал</span><b class="arrow">→</b><span>Нас бие гүйцсэн ургамал</span></div>
+<div class="activity"><strong>🎯 Дасгал 5 — Дарааллыг тогтоо</strong>
+<button class="choice" onclick="answer(this,true)">Үр → Соёо → Залуу ургамал → Нас бие гүйцсэн ургамал</button>
+<button class="choice" onclick="answer(this,false)">Нас бие гүйцсэн ургамал → Үр → Соёо → Залуу ургамал</button></div>
+<div class="activity"><strong>🧠 Дунд түвшин — 2 оноо</strong>
+<p>Үр ус шингээгээд томорсон нь шууд өсөлт мөн үү?</p>
+<button class="choice" onclick="answer(this,true,2)">Үгүй. Ус шингээн хөөх нь дангаараа жинхэнэ өсөлтийг нотлохгүй; хуурай масс болон шинэ эдийн нэмэгдлийг авч үзнэ.</button><button class="choice" onclick="answer(this,false)">Тийм. Томорсон л бол өсөлт.</button></div>
+<div class="activity"><strong>🔬 Дээд түвшин — 2 оноо</strong>
+<p>Суулгацын өндөр нэмэгдсэн ч хуурай масс нэмэгдээгүй бол зөвхөн өндрөөр нь өсөлт гэж дүгнэж болох уу?</p>
+<button class="choice" onclick="answer(this,true,2)">Үгүй. Өсөлтийг үнэлэхдээ хуурай масс болон шинэ эдийн нэмэгдлийг авч үзнэ.</button><button class="choice" onclick="answer(this,false)">Тийм. Өндөр нэмэгдэх нь хангалттай.</button></div>
+</section>
+
+<section class="card">
+<h2>🔴 5. R — Reproduction / Үржил</h2>
+<div class="term"><div><strong>Reproduction</strong><br>Өөртэйгээ ижил зүйлийн шинэ үр төл бий болгох үйл явц.</div><button class="listen" onclick="speak('Reproduction')">🔊 Сонсох</button></div>
+<div class="grid"><div>🌱 Үрээр үржих</div><div>🐣 Өндөгнөөс дэгдээхэй гарах</div><div>🦠 Бактери хоёр хуваагдах</div></div>
+<div class="activity"><strong>🎯 Дасгал 6 — Үржлийн төрлийг ялга</strong>
+<button class="choice" onclick="answer(this,true)">Бактери хоёр хуваагдах → бэлгийн бус үржил</button>
+<button class="choice" onclick="answer(this,true)">Эцэг, эхээс үр төл бий болох → бэлгийн үржил</button>
+<button class="choice" onclick="answer(this,false)">Бактери хоёр хуваагдах → бэлгийн үржил</button></div>
+<div class="activity"><strong>🧠 Дунд түвшин — 2 оноо</strong>
+<p>Бэлгийн болон бэлгийн бус үржлийн нэг ялгааг хэл.</p>
+<button class="choice" onclick="answer(this,true,2)">Бэлгийн үржилд хоёр эцэг, эхийн генетикийн мэдээлэл оролцож болох бол бэлгийн бус үржилд нэг организмээс шинэ организм үүсч болно.</button><button class="choice" onclick="answer(this,false)">Хоёулаа яг ижил үйл явц.</button></div>
+<div class="activity"><strong>🔬 Дээд түвшин — 3 оноо</strong>
+<p>Нэг зүйлийн бүх организм үржих чадвараа алдвал тухайн зүйлийн тоо толгойд юу тохиолдох вэ?</p>
+<button class="choice" onclick="answer(this,true,3)">Шинэ үр төл бий болохгүй тул тоо толгой буурч, улмаар тухайн зүйл устаж болзошгүй.</button><button class="choice" onclick="answer(this,false)">Тоо толгой заавал нэмэгдэнэ.</button></div>
+</section>
+
+<section class="card">
+<h2>🟡 6. E — Excretion / Ялгаруулалт</h2>
+<div class="term"><div><strong>Excretion</strong><br>Бодисын солилцооны үед үүссэн хаягдал болон илүүдэл бодисыг биеэс зайлуулах үйл явц.</div><button class="listen" onclick="speak('Excretion')">🔊 Сонсох</button></div>
+<p>⚠️ <strong>Excretion</strong> ба <strong>Egestion</strong> адил биш.</p>
+<table><tr><th>Бодис</th><th>Ангилал</th></tr><tr><td>Нүүрсхүчлийн хий</td><td>Ялгаруулалт</td></tr><tr><td>Шээсний хаягдал бодис</td><td>Ялгаруулалт</td></tr><tr><td>Шингээгүй хоол</td><td>Боловсруулаагүй хоол гадагшлуулах</td></tr></table>
+<div class="activity"><strong>🎯 Дасгал 7 — Зөв ангил</strong>
+<button class="choice" onclick="answer(this,true)">Нүүрсхүчлийн хий → ялгаруулалт</button>
+<button class="choice" onclick="answer(this,true)">Шингээгүй хоол → ялгаруулалт биш</button>
+<button class="choice" onclick="answer(this,false)">Шингээгүй хоол → эсийн бодисын солилцооны хаягдал</button></div>
+<div class="activity"><strong>🧠 Дунд түвшин — 2 оноо</strong>
+<p>Яагаад шингээгүй хоолыг бодисын солилцооны хаягдал гэж үздэггүй вэ?</p>
+<button class="choice" onclick="answer(this,true,2)">Шингээгүй хоол нь эсийн бодисын солилцоонд үүссэн бүтээгдэхүүн биш.</button><button class="choice" onclick="answer(this,false)">Учир нь хоол хэзээ ч биед ордоггүй.</button></div>
+<div class="activity"><strong>🔬 Дээд түвшин — 2 оноо</strong>
+<p>Нүүрсхүчлийн хий биеэс гадагшлахгүй хуримтлагдвал яагаад асуудал үүсэх вэ?</p>
+<button class="choice" onclick="answer(this,true,2)">Нүүрсхүчлийн хий нь эсийн амьсгалын бүтээгдэхүүн тул зайлуулах шаардлагатай; хэт хуримтлал нь хэвийн үйл ажиллагаанд сөргөөр нөлөөлнө.</button><button class="choice" onclick="answer(this,false)">Нүүрсхүчлийн хий нь хэрэггүй учраас ямар ч нөлөөгүй.</button></div>
+</section>
+
+<section class="card">
+<h2>🟢 7. N — Nutrition / Хооллолт</h2>
+<div class="term"><div><strong>Nutrition</strong><br>Өсөлт, нөхөн төлжилт болон энергийн хэрэгцээнд шаардлагатай бодисыг авч ашиглах үйл явц.</div><button class="listen" onclick="speak('Nutrition')">🔊 Сонсох</button></div>
+<div class="grid"><div>🌱 Ургамал — фотосинтезээр органик бодис үүсгэнэ.</div><div>🐕 Амьтан — хоол тэжээлээс шаардлагатай бодис авна.</div></div>
+<div class="activity"><strong>🎯 Дасгал 8 — Зөв холбо</strong>
+<button class="choice" onclick="answer(this,true)">🌱 Ургамал → фотосинтезээр органик бодис үүсгэнэ</button>
+<button class="choice" onclick="answer(this,true)">🐕 Амьтан → хоол тэжээл авна</button>
+<button class="choice" onclick="answer(this,false)">🐕 Амьтан → фотосинтез хийж хоолоо өөрөө үүсгэнэ</button></div>
+<div class="activity"><strong>🧠 Дунд түвшин — 2 оноо</strong>
+<p>Ургамал болон амьтны хооллолтын нэг ялгааг тайлбарла.</p>
+<button class="choice" onclick="answer(this,true,2)">Ногоон ургамал фотосинтезээр органик бодис үүсгэдэг бол амьтан бэлэн органик бодисыг хоол тэжээлээр авдаг.</button><button class="choice" onclick="answer(this,false)">Ургамал ямар ч бодис ашигладаггүй.</button></div>
+<div class="activity"><strong>🔬 Дээд түвшин — 2 оноо</strong>
+<p>Ургамал хоол иддэггүй мэт харагддаг боловч яагаад хооллолтын шинжтэй гэж үздэг вэ?</p>
+<button class="choice" onclick="answer(this,true,2)">Ургамал ус, эрдэс бодис авч, фотосинтезээр органик бодис үүсгэн ашигладаг.</button><button class="choice" onclick="answer(this,false)">Ургамал хооллолтгүй амьдралын үйл ажиллагаатай.</button></div>
+</section>
+
+<section class="card">
+<h2>🧩 MRS GREN — БОДИТ НӨХЦӨЛД ХЭРЭГЛЭЕ</h2>
+<div class="activity"><strong>🎯 Дасгал 9</strong>
+<table>
+<tr><th>Нөхцөл</th><th>Зөв шинж</th></tr>
+<tr><td>Нохой гүйх</td><td>Movement</td></tr>
+<tr><td>Эсэд энерги чөлөөлөгдөх</td><td>Respiration</td></tr>
+<tr><td>Ургамал гэрлийн зүг ургах</td><td>Sensitivity</td></tr>
+<tr><td>Үр соёолох</td><td>Growth</td></tr>
+<tr><td>Шинэ үр төл бий болох</td><td>Reproduction</td></tr>
+<tr><td>Бодисын солилцооны хаягдал гадагшлах</td><td>Excretion</td></tr>
+<tr><td>Хоол тэжээл авах</td><td>Nutrition</td></tr>
+</table>
+<p><strong>Зөв хариу:</strong> Дээрх бүх холбоос зөв.</p>
+</div>
+</section>
+
+
+
+<section class="card">
+<h2>🔬 ЭЦСИЙН ДЭЭД ТҮВШНИЙ ДААЛГАВАР</h2>
+<div class="activity">
+<p><strong>“ШИНЭ ОРГАНИЗМ”</strong></p>
+<p>Судлаач шинэ организм илрүүлжээ. Түүнд эс байна; энерги ашиглана; орчны өөрчлөлтийг мэдэрнэ; өснө; үржинэ; бодисын солилцооны хаягдлаа гадагшлуулна; шаардлагатай бодисыг авч ашиглана.</p>
+<p><strong>Асуулт:</strong> Энэ организмыг амьд гэж үзэх үү?</p>
+<button class="choice" onclick="answer(this,true,7)">Тийм. Амьд биеийн үндсэн шинжүүдийг олон талаар илэрхийлж байгаа тул амьд гэж үзнэ.</button>
+<button class="choice" onclick="answer(this,false)">Үгүй. Зөвхөн хөдөлгөөнгүй учраас амьд биш.</button>
+<p class="small">Үнэлгээ: эс, энерги, мэдэрхүй, өсөлт, үржил, ялгаруулалт, хооллолт ба зөв дүгнэлтийг хамруулсан үндэслэлтэй тайлбар — 7 оноо.</p>
+</div>
+</section>
+
+<section class="card">
+<h2>📊 НЭГДСЭН ҮНЭЛГЭЭ — 93 ОНОО</h2>
+<table>
+<tr><th>Хэсэг</th><th>Оноо</th></tr>
+<tr><td>Амьд, үхсэн, амьгүйг ялгах</td><td>6</td></tr>
+<tr><td>MRS GREN</td><td>7</td></tr>
+<tr><td>7 шинжийн үндсэн дасгал + дунд/дээд түвшний даалгавар</td><td>56</td></tr>
+<tr><td>MRS GREN-ийг хэрэглэх</td><td>7</td></tr>
+<tr><td>Мөрдөгчийн сорил</td><td>10</td></tr>
+<tr><td>Эцсийн дээд түвшний даалгавар</td><td>7</td></tr>
+<tr><th>НИЙТ</th><th>93</th></tr>
+</table>
+<div class="big-result">Таны оноо: <span id="finalScore">0</span> / 93</div>
+<p style="text-align:center"><button class="reset" onclick="location.reload()">🔄 Дахин эхлүүлэх</button></p>
+</section>
+
+<section class="card">
+<h2>🧠 Өөрийгөө үнэл</h2>
+<div class="grid">
+<div class="activity">🟢 <strong>84–93</strong><br>🏆 Маш сайн — Амьд биеийн шинжээч</div>
+<div class="activity">🔵 <strong>70–83</strong><br>🌟 Сайн — Гол ойлголтыг эзэмшсэн</div>
+<div class="activity">🟡 <strong>55–69</strong><br>👍 Ахицтай — Ойлголтоо бататгана</div>
+<div class="activity">🔴 <strong>0–54</strong><br>🔎 Дахин судлах шаардлагатай</div>
+</div>
+</section>
+
+</main>
+<footer>6-р анги • Биологи • Characteristics of Living Organisms</footer>
+
+<script>
+let score=0;
+const answered=new WeakSet();
+function update(){
+  document.getElementById('score').textContent=score;
+  document.getElementById('finalScore').textContent=score;
+  const pct=Math.min(100,Math.round(score/93*100));
+  document.getElementById('percent').textContent=pct+'%';
+  document.getElementById('progress').style.width=pct+'%';
+}
+function answer(btn, correct, points){
+  if(answered.has(btn)) return;
+  answered.add(btn);
+  const p=points ?? (btn.dataset.points ? Number(btn.dataset.points) : 1);
+  if(correct){
+    score += p;
+    btn.classList.add('correct');
+    const fb=btn.parentElement.querySelector('.feedback');
+    if(fb) fb.textContent='✅ Зөв! +'+p+' оноо';
+  }else{
+    btn.classList.add('wrong');
+    const fb=btn.parentElement.querySelector('.feedback');
+    if(fb) fb.textContent='❌ Дахин бодоод үзээрэй.';
+  }
+  update();
+}
+function speak(text){
+  if(!('speechSynthesis' in window)){alert('Таны төхөөрөмж англи дуудлагыг дэмжихгүй байна.');return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-US';
+  u.rate=0.65;
+  u.pitch=1;
+  u.volume=1;
+  speechSynthesis.speak(u);
+}
+update();
+</script>
+</body>
+</html>
